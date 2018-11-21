@@ -1,26 +1,22 @@
 <template>
   <div id="app">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
-    <PeriodicTable />
+    <img src="./assets/logo.png">
+    <router-view/>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue"
-import PeriodicTable from "./components/PeriodicTable.vue"
-import 'vue-material/dist/vue-material.min.css'
 
 export default {
-  name: "app",
+  name: 'App',
   components: {
-    PeriodicTable
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

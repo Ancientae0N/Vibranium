@@ -146,7 +146,7 @@ AgI(s) + e?,Ag(s) + I?,-0.15224
 MoO2(s) + 4H+ + 4e?,Mo(s) + 2H2O,-0.15
 Si(s) + 4H+ + 4e?,SiH4(g),-0.14
 Sn2+ + 2e?,Sn(s),-0.13
-O2(g) + H+ + e?,HO2•(aq),-0.13
+O2(g) + H+ + e?,HO2ï¿½(aq),-0.13
 Pb2+ + 2e?,Pb(s),-0.126
 WO2(s) + 4H+ + 4e?,W(s) + 2H2O,-0.12
 P(red) + 3H+ + 3e?,PH3(g),-0.111
@@ -256,7 +256,7 @@ Br 2BrO3? + 12H+ + 10e?,Br2(l) + 6H2O,1.48
 Cl 2ClO3? + 12H+ + 10e?,Cl2(g) + 6H2O,1.49
 Cl HClO(aq) + H+ + 2e?,Cl?(aq) + H2O,1.49
 MnO4? + 8H+ + 5e?,Mn2+ + 4H2O,1.51
-O HO2• + H+ + e?,H2O2(aq),1.51
+O HO2ï¿½ + H+ + e?,H2O2(aq),1.51
 Au3+ + 3e?,Au(s),1.52
 NiO2(s) + 4H+ + 2e?,Ni2+ + 2OH?,1.59
 Ce4+ + e?,Ce3+,1.61
