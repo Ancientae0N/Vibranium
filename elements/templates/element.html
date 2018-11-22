@@ -1,74 +1,74 @@
 <html>
-    <head>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-		<script>
-            var element = "he"
-            
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script>
+    var element = "he"
+
 			set_summary = function() {
                 var slider = document.getElementById("myRange");
                 length = slider.value;
-                var request_str = "127.0.0.1:5000/summary/" + element + "/" + length;
+                var request_str = "http://127.0.0.1:5000/summary/" + element + "/" + length;
                 alert(request_str)
                 //var xhr = new XMLHttpRequest();
                 //xhr.open("GET", request_str, true);
                 //xhr.send();
-                $.get(request_str, function(data) {
-                    console.log("13")
-                    alert("xhr changed")
-                    //if (this.readyState == 4 && this.status == 200) {
-                        console.log(data);
-                        document.getElementById("summary_text").innerHTML = data;
-                    //}
+                fetch(request_str).then(function(response) {
+                    console.log(response);
+                    //alert("xhr changed");
+                        console.log(response);
+                        $("#summary_text")[0].innerHTML = response.body;
                 });
 			}
 
 		</script>
-    </head>
-    <body style="padding: 30px;">
-	<base href="https://raw-dot-custom-elements.appspot.com/FlorianFe/chemical-element-visualisation/v1.0.4/chemical-element-visualisation/">
-	<link rel="import" href="chemical-element-visualisation.html">
-    	<header>
+</head>
 
-    	</header>
+<body style="padding: 30px;">
+  <base href="https://raw-dot-custom-elements.appspot.com/FlorianFe/chemical-element-visualisation/v1.0.4/chemical-element-visualisation/">
+  <link rel="import" href="chemical-element-visualisation.html">
+  <header>
 
-    		<table width="25%" style="position: absolute; top: 50px;">
-    			<tr>
-    		<td><chemical-element-visualisation symbol="fe" tooltip="false"></chemical-element-visualisation></td>
-    		</table>
-    		
-    		<table width="50%" border="1" style="position: absolute; top: 50px; left: 27.5%;">
-    			<thead>
-    				<td>Property</td>
-    				<td>Value</td>
-    			</thead>
-    			<tr>
-    				<td>Electronic Configuration</td>
-    				<td>1s2 2s2 2p2</td>
-    			</tr>
-    		</table>
+  </header>
 
-    		<table width="15%", style="position: absolute; top: 50px; left: 80%; background: red; text-align: center;">
-    			<tr>
-    				<td style="font-size: 48px;">
-    					C
-    				</td>
-    			</tr>
-    			<tr>
-    				<td>Carbon</td>
-    			</tr>
-    			<tr>
-    				<td>40.8</td>
-    			</tr>
-    		</table>
-		<div class="slidecontainer">
-  			<input type="range" min="3" max="10" value="5" class="slider" id="myRange" onchange="set_summary();">
-		</div>
-   		<div style="position: absolute; top: 420px;">
-   			<p id = "summary_text"></p>
-   			some words in the summary
-   		</div>
-    </body>
+  <table width="25%" style="position: absolute; top: 50px;">
+    <tr>
+      <td>
+        <chemical-element-visualisation symbol="fe" tooltip="false"></chemical-element-visualisation>
+      </td>
+  </table>
+
+  <table width="50%" border="1" style="position: absolute; top: 50px; left: 27.5%;">
+    <thead>
+      <td>Property</td>
+      <td>Value</td>
+    </thead>
+    <tr>
+      <td>Electronic Configuration</td>
+      <td>1s2 2s2 2p2</td>
+    </tr>
+  </table>
+
+  <table width="15%" , style="position: absolute; top: 50px; left: 80%; background: red; text-align: center;">
+    <tr>
+      <td style="font-size: 48px;">
+        C
+      </td>
+    </tr>
+    <tr>
+      <td>Carbon</td>
+    </tr>
+    <tr>
+      <td>40.8</td>
+    </tr>
+  </table>
+  <div class="slidecontainer">
+    <input type="range" min="3" max="10" value="5" class="slider" id="myRange" onchange="set_summary();">
+  </div>
+  <div style="position: absolute; top: 420px;">
+    <p id="summary_text"></p>
+    some words in the summary
+  </div>
+</body>
+
 </html>
