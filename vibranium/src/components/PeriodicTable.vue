@@ -2,7 +2,7 @@
 <div class="md-layout col">
   <div class="md-layout-item">
     <md-content>
-      <isotope :list="elements" @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
+      <isotope :list="elements" :options="options" @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
         <div v-for="element in elements" :key="element.symbol">
           <router-link to="/element/He">
             <md-card class="card" style="width:150px">
