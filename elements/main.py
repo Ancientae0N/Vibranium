@@ -4,6 +4,7 @@ from flask import Flask, render_template
 from flask_cors import CORS
 
 from elements.tfidf import ExtractiveSummarizer_tfidf
+from elements.balance import balance_equation
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -34,6 +35,16 @@ def get_element_data(element):
     else:
         element = element.lower()
         return json.dumps(element_data[element])
+
+
+@app.route("/balance/<equation>")
+def get_balanced_equation(lhs, rhs):
+    return balance_equation(lhs + "->" + rhs).split("->")
+
+@app.route("/<element>")
+def load_element_page(element):
+    return render_template("element.html", ELEMENT=element)
+
 
 
 if __name__ == "__main__":
