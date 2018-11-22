@@ -1,13 +1,28 @@
 <html>
     <head>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 		<script>
-			var summary_dict = {{Summary|safe}}
-			var slider = document.getElementById("myRange");
-            alert(slider.value)
-			function set_summary() {
-				var e = document.getElementById("summary_text");
-                alert(slider.value)
-				e.innerHTML = summary_dict[slider.value]
+            var element = "he"
+            
+			set_summary = function() {
+                var slider = document.getElementById("myRange");
+                length = slider.value;
+                var request_str = "127.0.0.1:5000/summary/" + element + "/" + length;
+                alert(request_str)
+                //var xhr = new XMLHttpRequest();
+                //xhr.open("GET", request_str, true);
+                //xhr.send();
+                $.get(request_str, function(data) {
+                    console.log("13")
+                    alert("xhr changed")
+                    //if (this.readyState == 4 && this.status == 200) {
+                        console.log(data);
+                        document.getElementById("summary_text").innerHTML = data;
+                    //}
+                });
 			}
 
 		</script>
