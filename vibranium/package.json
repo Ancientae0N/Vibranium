@@ -9,6 +9,7 @@
     "serve:bs": "vue-cli-service serve:bs"
   },
   "dependencies": {
+    "jquery": "^3.3.1",
     "vue": "^2.5.17",
     "vue-flex": "^2.1.2",
     "vue-material": "^1.0.0-beta-10.2",

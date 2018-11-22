@@ -9,6 +9,7 @@
 
 <script>
 import data from "./periodic_table.js";
+import $ from 'jquery';
 
 export default {
   name: "ElementPage",
