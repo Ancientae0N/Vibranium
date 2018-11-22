@@ -1,7 +1,6 @@
 <html>
 
 <head>
-  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script>
     var element = "he"
 
@@ -9,26 +8,64 @@
                 var slider = document.getElementById("myRange");
                 length = slider.value;
                 var request_str = "http://127.0.0.1:5000/summary/" + element + "/" + length;
-                alert(request_str)
-                //var xhr = new XMLHttpRequest();
-                //xhr.open("GET", request_str, true);
-                //xhr.send();
-                fetch(request_str).then(function(response) {
-                    console.log(response);
-                    //alert("xhr changed");
-                        console.log(response);
-                        $("#summary_text")[0].innerHTML = response.body;
-                });
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", request_str, true);
+                xhr.send();
+
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("summary_text").innerHTML = xhr.response;     
+                    }
+                }
 			}
 
 		</script>
 </head>
 
-<body style="padding: 30px;">
+<body style="padding: 30px;" onload="set_summary();">
   <base href="https://raw-dot-custom-elements.appspot.com/FlorianFe/chemical-element-visualisation/v1.0.4/chemical-element-visualisation/">
   <link rel="import" href="chemical-element-visualisation.html">
   <header>
+    <style type="text/css">
+        .slidecontainer {
+    width: 100%; /* Width of the outside container */
+}
 
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+    </style>
   </header>
 
   <table width="25%" style="position: absolute; top: 50px;">
@@ -62,12 +99,11 @@
       <td>40.8</td>
     </tr>
   </table>
-  <div class="slidecontainer">
-    <input type="range" min="3" max="10" value="5" class="slider" id="myRange" onchange="set_summary();">
+  <div class="slidecontainer" style="position: relative; top: 400px;">
+    <input type="range" min="3" max="25" value="10" class="slider" id="myRange" oninput="set_summary();">
   </div>
-  <div style="position: absolute; top: 420px;">
+  <div style="position: absolute; top: 450px;">
     <p id="summary_text"></p>
-    some words in the summary
   </div>
 </body>
 
