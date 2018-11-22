@@ -11,10 +11,11 @@ import VueMaterial from 'vue-material'
 import App from './App'
 import router from './router'
 import VueRouter from 'vue-router'
+import isotope from 'vueisotope'
 
 Vue.config.productionTip = false
 
-
+Vue.use(isotope);
 Vue.use(VueFlex);
 Vue.config.productionTip = false;
 Vue.use(VueMaterial);
@@ -25,5 +26,6 @@ Vue.use(VueRouter);
 new Vue({
   el: '#app',
   router,
+  components: {isotope},
   render: h => h(App)
 })

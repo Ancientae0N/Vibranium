@@ -6,10 +6,11 @@
 </template>
 
 <script>
-
+import isotope from 'vueisotope'
 export default {
   name: 'App',
   components: {
+    isotope
   }
 }
 </script>

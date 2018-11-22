@@ -2,10 +2,10 @@
 <div class="md-layout col">
   <div class="md-layout-item">
     <md-content>
-      <flex-row tag="section">
-        <flex-col v-for="element in elements">
+      <isotope :list="elements" @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
+        <div v-for="element in elements" :key="element.symbol">
           <router-link to="/element/He">
-            <md-card>
+            <md-card class="card" style="width:150px">
               <md-card-header>
                 {{element.symbol}}
               </md-card-header>
@@ -16,8 +16,8 @@
               </md-card-actions>
             </md-card>
           </router-link>
-        </flex-col>
-      </flex-row>
+        </div>
+      </isotope>
     </md-content>
   </div>
 </div>
@@ -26,16 +26,24 @@
 <script>
 import data from "./periodic_table.js";
 import $ from 'jquery';
+import isotope from 'vueisotope'
 export default {
   name: "PeriodicTable",
   data() {
     return {
-      elements: data
+      elements: data,
+      options: {}
     }
-  }
+  },
+  components: {isotope}
 }
 </script>
 
 <style>
-.col: {width:80%}
+.col: {
+  width: 80%
+}
+.md-card: {
+  width: 40px
+}
 </style>

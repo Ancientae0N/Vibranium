@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+<div class="container">
 
   <md-content>
     {{$route.params.symbol}}
@@ -23,6 +23,6 @@ export default {
 
 <style>
 .container: {
-  width:80%;
+  width: 80%;
 }
 </style>
