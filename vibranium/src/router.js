@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 import ElementPage from "./components/ElementPage.vue"
 import PeriodicTable from "./components/PeriodicTable.vue"
+import Equations from "./components/Equations.vue"
 
 var router = new VueRouter({
   routes: [{
@@ -10,7 +11,11 @@ var router = new VueRouter({
   {
     path: "/element/:symbol",
     component: ElementPage
-  }]
+  },
+      {
+        path: "/equation/:something",
+          component: Equations
+      }]
 })
 
 export default router;
