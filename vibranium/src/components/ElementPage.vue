@@ -59,8 +59,4 @@ export default {
   }
 }
 </script>
-<style>
-  .slidecontainer{
-    top: 100 px;
-  }
-</style>
+
