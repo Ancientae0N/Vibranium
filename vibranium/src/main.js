@@ -6,7 +6,7 @@ import VueFlex from "vue-flex";
 // Already autoprefixed for vendor prefixes.
 // Also namespaced to avoid collisions.
 import "vue-flex/dist/vue-flex.css";
-import VueMaterial from 'vue-material'
+//import VueMaterial from 'vue-material'
 import Vuetify from 'vuetify'
 
 
@@ -21,7 +21,7 @@ Vue.config.productionTip = false
 Vue.use(isotope);
 Vue.use(VueFlex);
 Vue.config.productionTip = false;
-Vue.use(VueMaterial);
+//Vue.use(VueMaterial);
 Vue.use(VueRouter);
 Vue.use(Vuetify);
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <v-app class="container">
     <base href="https://raw-dot-custom-elements.appspot.com/FlorianFe/chemical-element-visualisation/v1.0.4/chemical-element-visualisation/">
     <link rel="import" href="chemical-element-visualisation.html">
     <header>
@@ -43,7 +43,7 @@
       <p id = "summary_text"></p>
       some words in the summary
     </div>
-</div>
+</v-app>
 </template>
 
 <script>
