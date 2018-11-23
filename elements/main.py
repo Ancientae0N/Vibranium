@@ -3,8 +3,8 @@ import json
 from flask import Flask, render_template
 from flask_cors import CORS
 
-from tfidf import ExtractiveSummarizer_tfidf
-from balance import balance_equation
+from elements.tfidf import ExtractiveSummarizer_tfidf
+from elements.balance import balance_equation
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -50,6 +50,11 @@ def load_element_page(element):
     if element not in element_data:
         return "Invalid element " + element
     return render_template("element.html", ELEMENT=element)
+
+
+@app.route("/about")
+def load_about_page():
+    return render_template("about.html")
 
 
 if __name__ == "__main__":
