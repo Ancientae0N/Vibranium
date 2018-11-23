@@ -14,7 +14,7 @@
   </v-layout>
   <v-layout>
     <v-flex xs12>
-      <isotope style="margin-top:50px" ref="isotope" id="root_isotope1" :list="list" :options='options' @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
+      <isotope style="margin-top:50px;margin-left:2%" ref="isotope" id="root_isotope1" :list="list" :options='options' @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
         <div v-for="(element,index) in list" :key="index">
           <router-link :to="'/element/'+String(element.symbol).toLowerCase()">
             <v-card class="card" style="width:150px" :class="{blue: (currentTemperature< parseFloat(element['melting-point'])), green: (currentTemperature>parseFloat(element['melting-point']) && currentTemperature<parseFloat(element['boiling-point'])) , red: (currentTemperature >= parseFloat(element['boiling-point'])) }">

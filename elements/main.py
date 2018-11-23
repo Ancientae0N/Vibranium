@@ -3,8 +3,8 @@ import json
 from flask import Flask, render_template
 from flask_cors import CORS
 
-from elements.tfidf import ExtractiveSummarizer_tfidf
-from elements.balance import balance_equation
+from tfidf import ExtractiveSummarizer_tfidf
+from balance import balance_equation
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
