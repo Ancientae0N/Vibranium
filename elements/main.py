@@ -34,15 +34,21 @@ def get_element_data(element):
         return json.dumps(element_data)
     else:
         element = element.lower()
-        return json.dumps(element_data[element])
+        if element in element_data:
+            return json.dumps(element_data[element])
+        else:
+            return "Invalid element " + element
 
 
 @app.route("/balance/<equation>")
-def get_balanced_equation(lhs, rhs):
-    return balance_equation(lhs + "->" + rhs).split("->")
+def get_balanced_equation(equation):
+    return balance_equation(equation)
+
 
 @app.route("/<element>")
 def load_element_page(element):
+    if element not in element_data:
+        return "Invalid element " + element
     return render_template("element.html", ELEMENT=element)
 
 

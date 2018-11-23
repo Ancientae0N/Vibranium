@@ -1,5 +1,6 @@
 import re
 from sympy.solvers import solve
+from sympy import Symbol
 from math import gcd
 from collections import defaultdict
 from string import ascii_lowercase
@@ -28,7 +29,7 @@ def balance_equation(eq):
      for a1, a2 in zip(N[0::2],N[1::2]):g=gcd(g,a2)
      N=[i/g for i in N]
      pM=lambda c: str(c) if c!=1 else ''
-     return ' -> '.join(' + '.join(pM(N.pop(0))+str(t) for t in p.split('+')) for p in eq.split('->'))
+     return ' → '.join(' + '.join(pM(N.pop(0))+str(t) for t in p.split('+')) for p in eq.split('->'))
     else:
         return "invalid expression"
 

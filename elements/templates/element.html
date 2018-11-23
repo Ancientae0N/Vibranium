@@ -25,6 +25,8 @@
     }   
 
     var init = function() {
+      animation = document.getElementById("animation");
+      animation.symbol = element;
       set_summary();
       var request_str = "http://127.0.0.1:5000/data/" + element;
       var xhr = new XMLHttpRequest();
@@ -47,10 +49,9 @@
                 table.appendChild(row);
               }
           }
-          animation = document.getElementById("animation");
-          animation.symbol = element;
       }
     }
+    document.getElementById("vis").style.display = 'block';
     temp = document.getElementById("preload")
     temp.parentNode.removeChild(temp);
   }
@@ -60,27 +61,22 @@
 <body onload="init();" style="padding: 2%;">
     <div class="progress" id="preload" style="position: absolute; top:50%; width: 50%; align-self: center; left:35%;">
       <div class="indeterminate"></div>
-  </div>
-        
-  <h2 id="element-name"></h2>
-  <table id="properties" style="width: 48%;">
-  </table>
-
-    <chemical-element-visualisation symbol="" tooltip="false" id = "animation" style="width: 25%; position: absolute; left:60%; top:2%;">
-    
-  </chemical-element-visualisation>
-
-  <div style="width: 45%; position: absolute; left:52%; top:48%;">
-    <h4> Summary </h4>
-   <form action="#">
-    <p class="range-field">
-      <input type="range" id="myRange" min="2" max="15" value="5" oninput="set_summary();" />
-    </p>
-  </form>
-        
-  <div id="summary_text"></div>
-</div>
-
+    </div>
+    <div id = "vis" style="visibility: none;">
+      <h2 id="element-name"></h2>
+      <table id="properties" style="width: 48%;"></table>
+      <chemical-element-visualisation symbol="" tooltip="false" id = "animation" style="width: 25%; position: absolute; left:60%; top:2%;">
+      </chemical-element-visualisation>
+      <div id = "summary_pane" style="width: 45%; position: absolute; left:52%; top:48%;">
+        <h4>Summary</h4>
+        <form action="#">
+          <p class="range-field">
+            <input type="range" id="myRange" min="2" max="15" value="5" oninput="set_summary();" />
+          </p>
+        </form>
+        <div id="summary_text"></div>
+      </div>
+    </div>
   
 </body>
 
