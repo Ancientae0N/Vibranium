@@ -13,7 +13,7 @@ var router = new VueRouter({
     component: ElementPage
   },
       {
-        path: "/equation/:something",
+        path: "/equation",
           component: Equations
       }]
 })
