@@ -1,54 +1,57 @@
 <template>
 <div>
 
-<v-layout row wrap style="width:80%;margin:0 auto;">
-  <v-flex xs12>
-    <h1>Vue isotope</h1>
-  </v-flex>
-  <v-flex xs12>
-    <h2>Filter</h2>
-    <div class="button-group">
-      <v-btn v-for="(val, key) in options.getFilterData" :class="[key===filterOption? 'is-checked' : '']" @click="$refs.isotope.filter(key)">{{key}}
-      </v-btn>
-    </div>
-  </v-flex>
-  <v-flex xs12>
-    <h2>Filter Text</h2>
-    <div class="button-group">
-      <v-text-field label='regular'></v-text-field>
-    </div>
-  </v-flex>
-  <v-flex xs12>
-    <h2>Sort</h2>
-    <div class="button-group">
-      <v-btn class='md-raised' v-for="(val, key) in options.getSortData" :class="[key===sortOption? 'is-checked' : '']" @click="$refs.isotope.sort(key)">{{key}}</v-btn>
-    </div>
-  </v-flex>
-  <v-flex xs12>
-    <v-slider min='100' max='1000' v-model="currentTemperature"></v-slider>
-    {{currentTemperature}}
-  </v-flex>
-</v-layout>
-<v-layout>
-  <v-flex xs12>
-    <isotope style="margin-top:50px" ref="isotope" id="root_isotope1" :list="list" :options='options' @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
-      <div v-for="(element,index) in list" :key="index">
-        <router-link :to="'/element/'+String(element.symbol).toLowerCase()">
-          <v-card class="card" style="width:150px">
-            <v-card-title>
-              {{element.symbol}}
-            </v-card-title>
-            {{element.name}}<br />
-            {{element.number}}<br />
-            {{element.atomic_weight}}
-            <v-card-actions>
-            </v-card-actions>
-          </v-card>
-        </router-link>
+  <v-layout row wrap style="width:80%;margin:0 auto;">
+    <v-flex xs12>
+      <h1>Vue isotope</h1>
+    </v-flex>
+    <v-flex xs12>
+      <h2>Filter</h2>
+      <div class="button-group">
+        <v-btn v-for="(val, key) in options.getFilterData" :class="[key===filterOption? 'is-checked' : '']" @click="$refs.isotope.filter(key)">{{key}}
+        </v-btn>
       </div>
-    </isotope>
-  </v-flex>
-</v-layout>
+    </v-flex>
+    <v-flex xs12>
+      <h2>Filter Text</h2>
+      <div class="button-group">
+        <v-text-field label='regular'></v-text-field>
+      </div>
+    </v-flex>
+    <v-flex xs12>
+      <h2>Sort</h2>
+      <div class="button-group">
+        <v-btn class='md-raised' v-for="(val, key) in options.getSortData" :class="[key===sortOption? 'is-checked' : '']" @click="$refs.isotope.sort(key)">{{key}}</v-btn>
+      </div>
+    </v-flex>
+    <v-flex xs12>
+      <v-slider min='0' max='10000' v-model="currentTemperature"></v-slider>
+      {{currentTemperature}}
+    </v-flex>
+  </v-layout>
+  <v-layout>
+    <v-flex xs12>
+      <isotope style="margin-top:50px" ref="isotope" id="root_isotope1" :list="list" :options='options' @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
+        <div v-for="(element,index) in list" :key="index">
+          <router-link :to="'/element/'+String(element.symbol).toLowerCase()">
+            <v-card class="card" style="width:150px" :class="{blue: (currentTemperature< parseFloat(element['melting-point'])), green: (currentTemperature>parseFloat(element['melting-point']) && currentTemperature<parseFloat(element['boiling-point'])) , red: (currentTemperature >= parseFloat(element['boiling-point'])) }">
+              <v-card-title>
+                {{element.symbol}}
+              </v-card-title>
+              {{element.name}}<br />
+              {{element.number}}<br />
+              {{element['atomic-weight']}}
+              {{parseInt(element['melting-point'])}}
+              {{parseInt(element['boiling-point'])}}
+
+              <v-card-actions>
+              </v-card-actions>
+            </v-card>
+          </router-link>
+        </div>
+      </isotope>
+    </v-flex>
+  </v-layout>
 </div>
 </template>
 
@@ -113,6 +116,18 @@ export default {
 <style>
 .col: {
   width: 80%
+}
+
+.liquid {
+  background-color: green
+}
+
+.solid {
+  background-color: blue
+}
+
+.gas {
+  background-color: red
 }
 
 .md-card: {
