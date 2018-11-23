@@ -1,38 +1,46 @@
 <template>
-<v-app id="main">
-  <h1>Vue isotope</h1>
-
-  <h2>Filter</h2>
-  <div class="button-group">
-    <v-btn v-for="(val, key) in option.getFilterData" :class="[key===filterOption? 'is-checked' : '']" @click="$refs.isotope.filter(key)">{{key}}
-    </v-btn>
-  </div>
-  Filter Text<v-input type='text' v-model="filterText"></v-input>
-
-  <h2>Sort</h2>
-  <div class="button-group">
-    <v-btn class='md-raised' :class="[sortOption==='original-order'? 'is-checked' : '']" @click="$refs.isotope.sort('original-order')">original order</v-btn>
-    <v-btn class='md-raised' v-for="(val, key) in option.getSortData" :class="[key===sortOption? 'is-checked' : '']" @click="$refs.isotope.sort(key)">{{key}}</v-btn>
-  </div>
-  <v-slider min='100' max='1000' step='10'></v-slider>
-  <isotope style="margin-top:50px" ref="isotope" id="root_isotope1" :list="list" :options='option' @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
-    <div v-for="(element,index) in list" :key="index">
-      <router-link :to="'/element/'+String(element.symbol).toLowerCase()">
-        <v-card class="card" style="width:150px">
-          <v-card-title>
-            {{element.symbol}}
-          </v-card-title>
+<v-layout row wrap>
+  <v-flex xs12>
+    <h1>Vue isotope</h1>
+  </v-flex>
+  <v-flex xs12>
+    <h2>Filter</h2>
+    <div class="button-group">
+      <v-btn v-for="(val, key) in option.getFilterData" :class="[key===filterOption? 'is-checked' : '']" @click="$refs.isotope.filter(key)">{{key}}
+      </v-btn>
+    </div>
+    Filter Text<v-input type='text' v-model="filterText"></v-input>
+  </v-flex>
+  <v-flex xs12>
+    <h2>Sort</h2>
+    <div class="button-group">
+      <v-btn class='md-raised' :class="[sortOption==='original-order'? 'is-checked' : '']" @click="$refs.isotope.sort('original-order')">original order</v-btn>
+      <v-btn class='md-raised' v-for="(val, key) in option.getSortData" :class="[key===sortOption? 'is-checked' : '']" @click="$refs.isotope.sort(key)">{{key}}</v-btn>
+    </div>
+  </v-flex>
+  <v-flex xs12>
+    <v-slider min='100' max='1000' v-model="currentTemperature"></v-slider>
+    {{currentTemperature}}
+  </v-flex>
+  <v-flex xs12>
+    <isotope style="margin-top:50px" ref="isotope" id="root_isotope1" :list="list" :options='option' @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
+      <div v-for="(element,index) in list" :key="index">
+        <router-link :to="'/element/'+String(element.symbol).toLowerCase()">
+          <v-card class="card" style="width:150px">
+            <v-card-title>
+              {{element.symbol}}
+            </v-card-title>
             {{element.name}}<br />
             {{element.number}}<br />
             {{element.weight}}
-          <v-card-actions>
-          </v-card-actions>
-        </v-card>
-      </router-link>
-    </div>
-  </isotope>
-
-</v-app>
+            <v-card-actions>
+            </v-card-actions>
+          </v-card>
+        </router-link>
+      </div>
+    </isotope>
+  </v-flex>
+</v-layout>
 </template>
 
 <script>
@@ -142,6 +150,7 @@ export default {
   data: function() {
     var _this = this;
     return {
+      currentTemperature: '',
       currentLayout: "masonry",
       filterText: '',
       list: baddata,

@@ -1,16 +1,20 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+<v-app>
+    <router-view></router-view>
+  <navigation></navigation>
+</v-app>
 </template>
 
 <script>
-import isotope from 'vueisotope'
+import isotope from 'vueisotope';
+import navigation from './Navigation.vue';
+import leftnav from './LeftNavigation.vue';
 export default {
   name: 'App',
   components: {
-    isotope
+    isotope,
+    navigation,
+    leftnav
   }
 }
 </script>
