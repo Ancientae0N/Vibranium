@@ -42,8 +42,10 @@ def get_element_data(element):
 
 @app.route("/balance/<equation>")
 def get_balanced_equation(equation):
-    return balance_equation(equation)
-
+    try: 
+        return balance_equation(equation)
+    except:
+        return "invalid expression"
 
 @app.route("/<element>")
 def load_element_page(element):

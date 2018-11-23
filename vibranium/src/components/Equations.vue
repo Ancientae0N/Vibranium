@@ -16,13 +16,7 @@
 
         </v-layout>
         <v-app id="inspire">
-          <div>
-            <v-btn color="success" @click="set_balanced_equation">Balance</v-btn>
-          </div>
           <div class='output'>
-            <p></p>
-            <p></p>
-            <p></p>
             {{result}}
           </div>
         </v-app>
@@ -35,33 +29,34 @@
 h1 {
   padding: 10px
 }
-.output{
-    padding : 30px;
-    font-size: 40px;
-}
 </style>
 <script>
+
+function fetchData() {
+  console.log('recompute');
+  var _this = this;
+  var equation = this.lhs + "->" + this.rhs;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://127.0.0.1:5000/balance/"+equation, true);
+  xhr.send()
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      _this.result = xhr.response;
+    }
+  }
+}
+
 export default {
   data: function() {
     return {
-      lhs: 'asda',
-      rhs: 'a;dmals',
-      result: '2H2O+ H2->O2'
+      lhs: '',
+      rhs: '',
+      result: ''
     }
   },
-  methods: {
-    set_balanced_equation: function() {
-      var _this = this;
-      var equation = this.lhs + "->" + this.rhs;
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "http://127.0.0.1:5000/balance/"+equation, true);
-      xhr.send()
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          _this.result = xhr.response;
-        }
-      }
-    }
+  watch: {
+    lhs: fetchData,
+    rhs: fetchData
   }
 }
 </script>
