@@ -47,7 +47,7 @@ export default {
       var _this = this;
       var equation = this.lhs + "->" + this.rhs;
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", "http://127.0.0.1:5000", true);
+      xhr.open("GET", "http://127.0.0.1:5000/balance/"+equation, true);
       xhr.send()
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {

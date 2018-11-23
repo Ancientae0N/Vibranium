@@ -1,5 +1,7 @@
 <template>
-<v-layout row wrap>
+<div>
+
+<v-layout row wrap style="width:80%;margin:0 auto;">
   <v-flex xs12>
     <h1>Vue isotope</h1>
   </v-flex>
@@ -26,6 +28,8 @@
     <v-slider min='100' max='1000' v-model="currentTemperature"></v-slider>
     {{currentTemperature}}
   </v-flex>
+</v-layout>
+<v-layout>
   <v-flex xs12>
     <isotope style="margin-top:50px" ref="isotope" id="root_isotope1" :list="list" :options='options' @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
       <div v-for="(element,index) in list" :key="index">
@@ -45,6 +49,7 @@
     </isotope>
   </v-flex>
 </v-layout>
+</div>
 </template>
 
 <script>
