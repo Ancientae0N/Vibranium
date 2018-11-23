@@ -20,6 +20,9 @@
             <v-btn color="success" @click="set_balanced_equation">Balance</v-btn>
           </div>
           <div class='output'>
+            <p></p>
+            <p></p>
+            <p></p>
             {{result}}
           </div>
         </v-app>
@@ -32,6 +35,10 @@
 h1 {
   padding: 10px
 }
+.output{
+    padding : 30px;
+    font-size: 40px;
+}
 </style>
 <script>
 export default {
@@ -39,7 +46,7 @@ export default {
     return {
       lhs: 'asda',
       rhs: 'a;dmals',
-      result: 'asdlasdkasj'
+      result: '2H2O+ H2->O2'
     }
   },
   methods: {
