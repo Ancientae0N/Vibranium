@@ -1,5 +1,6 @@
-<html>
-<head>
+
+
+<div style="padding: 2%;">
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -19,10 +20,10 @@
 
           xhr.onreadystatechange = function() {
               if (this.readyState == 4 && this.status == 200) {
-                  document.getElementById("summary_text").innerHTML = xhr.response;     
+                  document.getElementById("summary_text").innerHTML = xhr.response;
               }
           }
-    }   
+    }
 
     var init = function() {
       animation = document.getElementById("animation");
@@ -55,10 +56,8 @@
     temp = document.getElementById("preload")
     temp.parentNode.removeChild(temp);
   }
-	</script>
-</head>
+  </script>
 
-<body onload="init();" style="padding: 2%;">
     <div class="progress" id="preload" style="position: absolute; top:50%; width: 50%; align-self: center; left:35%;">
       <div class="indeterminate"></div>
     </div>
@@ -67,7 +66,7 @@
       <table id="properties" style="width: 48%;"></table>
       <chemical-element-visualisation symbol="" tooltip="false" id = "animation" style="width: 25%; position: absolute; left:60%; top:2%;">
       </chemical-element-visualisation>
-      <div id = "summary_pane" style="width: 45%; position: absolute; left:52%; top:48%;">
+      <div id = "summary_pane" style="width: 45%; position: absolute; left:52%; top:55%;">
         <h4>Summary</h4>
         <form action="#">
           <p class="range-field">
@@ -77,7 +76,8 @@
         <div id="summary_text"></div>
       </div>
     </div>
-  
-</body>
 
-</html>
+<script>
+init();
+</script>
+</div>
