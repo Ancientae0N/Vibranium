@@ -3,7 +3,7 @@ import json
 from flask import Flask, render_template
 from flask_cors import CORS
 
-from elements.tfidf import ExtractiveSummarizer_tfidf
+from tfidf import ExtractiveSummarizer_tfidf
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
